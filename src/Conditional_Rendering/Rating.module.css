@@ -1,0 +1,21 @@
+.blockFlex{
+    margin: 10px;
+    display: flex;
+}
+.item{
+    border: 1px solid black;
+    padding: 10px;
+    margin-left: 5px;
+    font-size: 24px;
+}
+.lamp{
+    margin-left: 20px;
+    width: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+.green{
+    background-color: #11f325;
+}.red{
+    background-color: #ee1008;
+}
