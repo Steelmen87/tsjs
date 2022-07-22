@@ -20,5 +20,5 @@ export type CiyType = {
     title: string
     houses: Array<HouseType>
     governmentBuildings: Array<governmentBuildingsType>
-    citizensNumber: 1000000
+    citizensNumber: number
 }
