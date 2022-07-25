@@ -1,26 +1,41 @@
-import React from 'react';
+import React, {useState} from 'react';
+import style from './Star.module.css'
 
-type RatingPropsType = {
-    value: 0 | 1 | 2 | 3 | 4 | 5
-}
-const Rating: React.FC<RatingPropsType> = ({value}) => {
+type RatingPropsType = {}
+
+const Rating: React.FC<RatingPropsType> = (props) => {
+    let [selected, setSelect] = useState(0)
+    const arrayStar = [1, 2, 3, 4, 5]
     return (
-        <div>
-            <Star selected={value > 0}/>
-            <Star selected={value > 1}/>
-            <Star selected={value > 2}/>
-            <Star selected={value > 3}/>
-            <Star selected={value > 4}/>
+        <div  className={style.comp_star_div}>
+            {arrayStar.map((s, i) => {
+                return (<span key={i}>
+                    <Star
+                        setSelect={setSelect}
+                        index={i}
+                        selected={selected}/>
+                </span>
+                )
+            })}
         </div>
     );
 };
 
 export default Rating;
+
 type PropsStarType = {
-    selected: boolean
+    selected: number
+    setSelect: (n: number) => void
+    index: number
 }
-const Star = ({selected}: PropsStarType) => {
-    let res = selected ? <strong>Star</strong> : 'Star'
-    return <span>{res}</span>
+const Star = ({selected, setSelect, index}: PropsStarType) => {
+    let res = selected >= index ? <strong>Star</strong> : 'Star'
+    const onSelected = () => setSelect(index)
+    return <div
+        className={style.comp_star}
+        onClick={onSelected}>
+        {res}
+    </div>
+
 
 }

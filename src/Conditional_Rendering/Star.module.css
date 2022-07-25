@@ -1,0 +1,11 @@
+.comp_star_div{
+    display: flex;
+
+}
+.comp_star {
+    border: 1px solid orangered;
+    margin: 10px;
+    border-radius: 30%;
+    padding: 4px;
+    width: 33px;
+}
