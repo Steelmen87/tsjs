@@ -11,8 +11,8 @@ const UnAccordion = ({titleValue}: AccordionPropsType) => {
         setCollapsed(!collapsed)
     }
 
-    return <div onClick={Coll}>
-        <AccordionTitle title={titleValue}/>
+    return <div>
+        <AccordionTitle onClick={Coll} title={titleValue}/>
         {!collapsed && <AccordionBody/>}
     </div>
 };
@@ -20,10 +20,11 @@ const UnAccordion = ({titleValue}: AccordionPropsType) => {
 export default UnAccordion;
 type AccordionTitle = {
     title: string
+    onClick:()=>void
 }
-const AccordionTitle = ({title}: AccordionTitle) => {
+const AccordionTitle = ({title,onClick}: AccordionTitle) => {
     return (
-        <h3>--{title}--</h3>
+        <h3 onClick={onClick}>--{title}--</h3>
     )
 }
 
