@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import Accordion from "./Accordion";
 
@@ -8,4 +8,7 @@ export default {
 
 } as ComponentMeta<typeof Accordion>;
 
-export const Accordion_False: ComponentStory<typeof Accordion> = (args) => <Accordion   titleValue={'Accordion'} collapsed={false}/>;
+export const Accordion_False: ComponentStory<typeof Accordion> = (args) => {
+    let [collapsed, setCollapsed] = useState(false)
+    return <Accordion setCollapsed={()=>setCollapsed(!collapsed)} titleValue={'Accordion'} collapsed={collapsed}/>
+};
