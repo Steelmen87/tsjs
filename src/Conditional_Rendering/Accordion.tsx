@@ -1,14 +1,23 @@
 import React from 'react';
 
-type AccordionPropsType = {
+export type AccordionPropsType = {
+    color?: string
+    /**
+     * @example
+     * titleValue - title for Accordion
+     */
     titleValue: string
     collapsed: boolean
+    /**
+     * setCollapsed function for change collapse
+     */
     setCollapsed: () => void
 }
-const Accordion = ({collapsed, setCollapsed, titleValue}: AccordionPropsType) => {
+const Accordion = ({collapsed, color, setCollapsed, titleValue}: AccordionPropsType) => {
     console.log('Accordion rendering')
     return <div>
         <AccordionTitle
+            color={color}
             setCollapsed={setCollapsed}
             title={titleValue}/>
 
@@ -19,11 +28,14 @@ const Accordion = ({collapsed, setCollapsed, titleValue}: AccordionPropsType) =>
 export default Accordion;
 type AccordionTitle = {
     title: string
-    setCollapsed:()=>void
+    setCollapsed: () => void
+    color?: string
 }
-const AccordionTitle = ({title,setCollapsed}: AccordionTitle) => {
+const AccordionTitle = ({title, setCollapsed, color}: AccordionTitle) => {
     return (
-        <h3 onClick={setCollapsed}>--{title}--</h3>
+        <h3
+            style={{color: color ? color : ''}}
+            onClick={(e) => setCollapsed()}>--{title}--</h3>
     )
 }
 

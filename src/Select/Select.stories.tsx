@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import {ComponentStory, ComponentMeta} from '@storybook/react';
 import Select from "./Select";
 
 export default {
@@ -8,10 +8,10 @@ export default {
 } as ComponentMeta<typeof Select>;
 
 export const Template_Select: ComponentStory<typeof Select> = (args) => {
-    const [value,setValue] = useState('')
-    const items = [{title:'one',value:1},{title:'two',value:2}, {title:'thee',value:3}]
-    const setValueChange = (val:string) =>{
+    const [value, setValue] = useState('none')
+    const items = [{title: 'Moscow', value: 1}, {title: 'Minsk', value: 2}, {title: 'Kiev', value: 3}]
+    const setValueChange = (val: string) => {
         setValue(val)
     }
-   return  <Select value={value} items={items} onChange={setValueChange}/>
+    return <Select value={value} items={items} onChange={setValueChange}/>
 };

@@ -1,0 +1,19 @@
+.main{
+    background-color: #cac7c7;
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 68px;
+}
+
+.items{
+    opacity: 0.8;
+    background-color: #dde3dc;
+    border-bottom: 1px solid black ;
+    width: 70px;
+}
+.items:hover{
+    cursor: pointer;
+}
+.main:hover{
+    cursor: pointer;
+}

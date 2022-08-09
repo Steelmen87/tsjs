@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import s from './Select.module.css'
 type ItemsType = {
     title: string
     value: any
@@ -10,24 +10,31 @@ type SelectPropsType = {
     items: ItemsType[]
 }
 const Select = ({value, items, onChange}: SelectPropsType) => {
-    const [visible, setVisible] = useState(true)
+    const [visible, setVisible] = useState(false)
     const onClickHandler = (title: string) => {
         onChange(title)
         Deactivate()
     }
     const Activate = () => {
-        setVisible(true)
+        setVisible(!visible)
     }
     const Deactivate = () => {
         setVisible(false)
     }
     return (
         <div>
-            <div onBlur={Deactivate} onClick={Activate}>{value}</div>
+            <div
+                className={s.main}
+                onClick={Activate}>
+                {value}
+            </div>
             {visible && items.map((i, index) =>
-                <div key={index}
-                     onClick={() => onClickHandler(i.title)}>
-                    {i.title}</div>)}
+                <div
+                    className={s.items}
+                    key={index} onClick={() => onClickHandler(i.title)}>
+                    {i.title}
+                </div>)
+            }
         </div>
     );
 };

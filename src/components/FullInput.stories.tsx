@@ -4,7 +4,7 @@ import FullInput from "./FullInput";
 import {action} from "@storybook/addon-actions";
 
 export default {
-    title: 'FullInput',
+    title: 'Components/FullInput',
     component: FullInput,
 } as ComponentMeta<typeof FullInput>;
 
