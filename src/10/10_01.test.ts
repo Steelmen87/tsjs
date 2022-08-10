@@ -1,4 +1,14 @@
-import {makeHairStyle, moveUser, upgradeLaptop, UserType, UserWithLaptopType} from "./10_01";
+import {
+    addCompaniesBook,
+    addNewBooks,
+    changeBook,
+    makeHairStyle,
+    moveUser, removeBook,
+    upgradeLaptop,
+    UserType,
+    UserWithBooksType,
+    UserWithLaptopType, WithCompaniesType
+} from "./10_01";
 
 
 test('reference type test', () => {
@@ -47,5 +57,63 @@ test('upgrade laptop to Mac', () => {
 
     expect(upgradeUserLaptop.laptop).not.toBe(user.laptop)
     expect(upgradeUserLaptop.laptop.title).toBe('MacBook')
+
+})
+test('add new books', () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: 'John',
+        hair: 32,
+        address: {
+            city: 'Minsk',
+            house: 12
+        },
+        laptop: {
+            title: 'ZenBook'
+        },
+        books: ['JS', 'react', 'css']
+    }
+    const upgradeUserBooks = addNewBooks(user, ['www', 'Http'])
+    expect(upgradeUserBooks.books.length).toBe(5)
+    expect(upgradeUserBooks.books).not.toBe(user.books)
+    expect(upgradeUserBooks.books[4]).not.toBe('www')
+    expect(upgradeUserBooks.laptop.title).toBe('ZenBook')
+
+})
+test('Change js to ts', () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: 'John',
+        hair: 32,
+        address: {
+            city: 'Minsk',
+            house: 12
+        },
+        laptop: {
+            title: 'ZenBook'
+        },
+        books: ['JS', 'react', 'css']
+    }
+    const upgradeUserBooks = changeBook(user, 'TS')
+    expect(upgradeUserBooks.books.length).toBe(3)
+    expect(upgradeUserBooks.books[0]).toBe('TS')
+
+
+})
+test('Companies', () => {
+    let user: UserWithLaptopType & WithCompaniesType = {
+        name: 'John',
+        hair: 32,
+        address: {
+            city: 'Minsk',
+            house: 12
+        },
+        laptop: {
+            title: 'ZenBook'
+        },
+        companies:[{id:1,title:'Epam'},{id:2,title:'IT_INCUBATOR'}]
+    }
+    const upgradeUserBooks = addCompaniesBook(user, 'Google')
+    expect(upgradeUserBooks.companies.length).toBe(3)
+    expect(upgradeUserBooks.companies[2].title).toBe('Google')
+
 
 })
