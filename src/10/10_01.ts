@@ -69,9 +69,30 @@ export function removeBook(u: UserWithLaptopType & UserWithBooksType, oldBook: s
         books: u.books.filter(b => b !== oldBook)
     }
 }
+
 export function addCompaniesBook(u: UserWithLaptopType & WithCompaniesType, newCompanies: string) {
     return {
         ...u,
-        companies: [...u.companies, {id:3,title:newCompanies}]
+        companies: [...u.companies, {...u, title: newCompanies}]
+    }
+}
+
+export function upgradeCompanies(u: WithCompaniesType, oldCompanies: number, upCompanies: string) {
+    return {
+        ...u,
+        companies: u.companies.map(comp =>
+            comp.id === oldCompanies
+                ? {...comp, title: upCompanies}
+                : comp)
+    }
+}
+
+export type upType = { [key: string]: Array<{ id: number, title: string }> }
+
+export function upgradeCompaniesArray(companies: upType,
+                                      userName: string, companiesId: number, newTitle: string) {
+    return {
+        ...companies,
+        [userName]: companies[userName].map(c => c.id === companiesId ? {...c, title: newTitle} : c)
     }
 }

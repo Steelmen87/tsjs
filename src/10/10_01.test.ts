@@ -4,7 +4,8 @@ import {
     changeBook,
     makeHairStyle,
     moveUser, removeBook,
-    upgradeLaptop,
+    upgradeCompanies, upgradeCompaniesArray,
+    upgradeLaptop, upType,
     UserType,
     UserWithBooksType,
     UserWithLaptopType, WithCompaniesType
@@ -109,11 +110,41 @@ test('Companies', () => {
         laptop: {
             title: 'ZenBook'
         },
-        companies:[{id:1,title:'Epam'},{id:2,title:'IT_INCUBATOR'}]
+        companies: [{id: 1, title: 'Epam'}, {id: 2, title: 'IT_INCUBATOR'}]
     }
     const upgradeUserBooks = addCompaniesBook(user, 'Google')
     expect(upgradeUserBooks.companies.length).toBe(3)
     expect(upgradeUserBooks.companies[2].title).toBe('Google')
 
 
+})
+test('Update Companies', () => {
+    let user: UserWithLaptopType & WithCompaniesType = {
+        name: 'John',
+        hair: 32,
+        address: {
+            city: 'Minsk',
+            house: 12
+        },
+        laptop: {
+            title: 'ZenBook'
+        },
+        companies: [{id: 1, title: 'Epam'}, {id: 2, title: 'IT_INCUBATOR'}]
+    }
+    const upgrCompanies = upgradeCompanies(user, 1, 'Google') as UserWithLaptopType & WithCompaniesType
+    expect(upgrCompanies.companies[0].title).toBe('Google')
+    expect(upgrCompanies.address).toBe(user.address)
+
+
+})
+
+test('Update Companies Array', () => {
+
+    let companies:upType = {
+        'Dimach': [{id: 1, title: 'Epam'}, {id: 2, title: 'IT_INCUBATOR'}],
+        'Viktor': [{id: 2, title: 'IT_INCUBATOR'}]
+    }
+    let copy = upgradeCompaniesArray(companies, 'Dimach', 1, 'Google')
+    expect(copy['Dimach']).not.toBe(companies['Dimach'])
+    expect(copy['Dimach'][0].title).toBe('Google')
 })
