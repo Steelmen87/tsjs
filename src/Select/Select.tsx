@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, KeyboardEvent} from 'react';
 import s from './Select.module.css'
+
 type ItemsType = {
     title: string
     value: any
@@ -9,7 +10,7 @@ type SelectPropsType = {
     onChange: (value: any) => void
     items: ItemsType[]
 }
-const Select = ({value, items, onChange}: SelectPropsType) => {
+const SelectSecret = ({value, items, onChange}: SelectPropsType) => {
     const [visible, setVisible] = useState(false)
     const onClickHandler = (title: string) => {
         onChange(title)
@@ -21,9 +22,16 @@ const Select = ({value, items, onChange}: SelectPropsType) => {
     const Deactivate = () => {
         setVisible(false)
     }
+    const onKeyUp = (e: KeyboardEvent<HTMLDivElement>) => {
+        for (let i = 0; i<items.length; i++) {
+            console.log(e.code)
+        }
+    }
     return (
         <div>
             <div
+                onKeyUp={onKeyUp}
+                tabIndex={0}
                 className={s.main}
                 onClick={Activate}>
                 {value}
@@ -31,7 +39,8 @@ const Select = ({value, items, onChange}: SelectPropsType) => {
             {visible && items.map((i, index) =>
                 <div
                     className={s.items}
-                    key={index} onClick={() => onClickHandler(i.title)}>
+                    key={index}
+                    onClick={() => onClickHandler(i.title)}>
                     {i.title}
                 </div>)
             }
@@ -39,4 +48,4 @@ const Select = ({value, items, onChange}: SelectPropsType) => {
     );
 };
 
-export default Select;
+export const Select = React.memo(SelectSecret);

@@ -13,6 +13,7 @@
 }
 .items:hover{
     cursor: pointer;
+    background-color: rgba(35, 132, 241, 0.76);
 }
 .main:hover{
     cursor: pointer;
