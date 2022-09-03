@@ -1,6 +1,5 @@
-import React, {useMemo, useState} from 'react';
+import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import UseMemo from "./UseMemo";
 import {HelpsToReactMemo} from './HelpsReactMemo';
 
 export default {
