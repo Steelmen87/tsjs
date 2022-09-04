@@ -27,3 +27,25 @@ export const SimpleExample = () => {
         <button onClick={() => setFake(fake + 1)}>Fake +</button>
     </>
 }
+export const SimpleIntervalExample = () => {
+    const [hour, setHour] = useState('')
+    const [min, setMin] = useState('')
+    const [sec, setSec] = useState('')
+
+    useEffect(() => {
+
+        const int = setInterval(() => {
+            const date = new Date()
+            const h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+            const m = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+            const s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
+            setHour(String(h))
+            setMin(String(m))
+            setSec(String(s))
+        }, 1000)
+    }, [])
+
+    return <>
+        {hour === '' ? '': `${hour}:${min}:${sec}`}
+    </>
+}
