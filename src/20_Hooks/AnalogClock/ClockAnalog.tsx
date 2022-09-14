@@ -49,22 +49,23 @@ export const Clock = () => {
                                 `${s.indicator} ${s.hours_indicator} ` +
                                 (state.getHours() === 0 ? "" : `${s.transition_effect}`)
                             }
-                            style={divStyleHours}></div>
+                            style={divStyleHours}/>
                         <div
                             id="minutes-indicator"
                             className={
                                 `${s.indicator} ${s.minutes_indicator} ` +
                                 (state.getMinutes() === 0 ? "" : `${s.transition_effect}`)
                             }
-                            style={divStyleMinutes}></div>
+                            style={divStyleMinutes}/>
                         <div
                             id="seconds-indicator"
                             className={
                                 `${s.indicator} ${s.seconds_indicator} ` +
                                 (state.getSeconds() === 0 ? "" : `${s.transition_effect}`)
                             }
-                            style={divStyleSeconds}></div>
-                        <div className={`${s.indicator_cover}`}></div>
+                            style={divStyleSeconds}/>
+                        <div className={`${s.indicator_cover}`}>
+                        </div>
                     </div>
                 </div>
                 { /*<div className="digital"> {this.state.date.toLocaleTimeString()}</div>*/}
